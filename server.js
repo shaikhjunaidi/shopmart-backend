@@ -48,6 +48,7 @@ const { verifyToken, verifyAdmin } = require('./middleware/authMiddleware');
 const upload = require('./middleware/uploadMiddleware');
 
 // 1. Auth Routes (Standard Password Login)
+
 router.post('/auth/signup', authController.signup);
 router.post('/auth/login', authController.login);
 router.post('/auth/otp/request', authController.requestLoginOtp);
@@ -100,6 +101,9 @@ router.post('/reviews', verifyToken, reviewController.addReview);
 router.get('/reviews/:id', reviewController.getProductReviews);
 // Register API routes with /api prefix
 app.use('/api', router);
+app.use('/api/auth', authRoutes); 
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 // --- Frontend Fallback ---
 // Add this simple route instead:
