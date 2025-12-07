@@ -102,9 +102,9 @@ router.get('/reviews/:id', reviewController.getProductReviews);
 app.use('/api', router);
 
 // --- Frontend Fallback ---
-app.get(/(.*)/, (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+// Add this simple route instead:
+app.get('/', (req, res) => {
+    res.send("✅ ShopMart Backend is Running! The Frontend is hosted separately.");
 });
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
